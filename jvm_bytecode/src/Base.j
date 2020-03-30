@@ -80,5 +80,37 @@ World:
 
 EndIf:
 
+    ; Loop
+    ldc 0
+    istore_0    ; i
+    ldc 1000
+    istore_1    ; n
+    ldc 0
+    istore_2    ; sum
+
+Loop:
+    iload_1
+    iload_0
+    isub        ; sub(bottom, top) = bottom - top
+    ifeq EndLoop
+
+    ; sum = sum + i
+    iload_0
+    iload_2
+    iadd
+    istore_2
+
+    ; i = i + 1
+    iload_0
+    ldc 1
+    iadd
+    istore_0
+
+    goto Loop
+EndLoop:
+    getstatic java/lang/System/out Ljava/io/PrintStream;
+    iload_2
+    invokevirtual java/io/PrintStream/println(I)V
+
     return
 .end method
